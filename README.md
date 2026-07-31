@@ -1,9 +1,18 @@
-# ISCPS Project Lab - Agentic Driving Coach
+# Intelligent and Safe CPS (ISCPS) Project Lab - Agentic Driving Coach
+
+> This template repository is designed as a project lab for the combined course of
+> [CSE 494](https://catalog.apps.asu.edu/catalog/classes/classlist?keywords=85268&searchType=all&term=2267#detailsOpen=85268-104231)
+> and [CSE 598](https://catalog.apps.asu.edu/catalog/classes/classlist?keywords=87933&searchType=all&term=2267#detailsOpen=87933-104278),
+> "Topic: Intelligent and Safe Cyber-Physical Systems" (ISCPS in short),
+> at Arizona State University (ASU) in Fall 2026.
+> If you have any questions about this project lab, please get in touch with the instructor,
+> [Hokeun Kim](https://hokeun.github.io/), via [hokeun@asu.edu](mailto:hokeun@asu.edu).
 
 This project puts a small local LLM inside the control loop of a simulated car
 approaching a stop sign. You will use Xronos reactors to study logical time,
 wall-clock inference latency, deadline misses, deterministic fallback, and
-physical stopping outcomes. ASU Sol is the primary platform.
+physical stopping outcomes. Arizona State University (ASU)'s
+[Sol Supercomputer](https://docs.rc.asu.edu/about) is the primary platform.
 
 ## Create your private repository
 
@@ -13,7 +22,7 @@ Before you begin the technical work:
 2. Select **Use this template**.
 3. Select **Create a new repository**.
 4. Create the repository under your or your group's GitHub account.
-5. Choose a clear repository name (e.g., my-agentic-driving-coach).
+5. Choose a clear repository name (e.g., `my-agentic-driving-coach` or `group05-agentic-driving-coach`).
 6. Set the visibility to **Private**.
 7. Do not publish course work in a public repository.
 8. Add only your project partners as collaborators.
@@ -200,8 +209,11 @@ responses, and it applies the deterministic fallback when a response is late,
 unsafe, or malformed. Recorder writes the result files used in the assignment.
 
 The system follows *Agentic Driving Coach*
-([arXiv:2604.11705](https://arxiv.org/abs/2604.11705)). The original Lingua
-Franca implementation is reimplemented here with the Xronos SDK 0.12.
+([arXiv:2604.11705](https://arxiv.org/abs/2604.11705)) by Deeksha Prahlad, Daniel Fan, and Hokeun Kim.
+The [original implementation](https://github.com/asu-kim/agentic-driving-coach)
+using [Lingua Franca](https://www.lf-lang.org/)
+is reimplemented here with the
+[Xronos Python SDK](https://docs.xronos.com/python_sdk/getting_started.html) 0.120.
 
 ## License
 
