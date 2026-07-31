@@ -1,4 +1,4 @@
-# Apptainer definition for ISCPS Project Lab 1 - Agentic Driving Coach.
+# Apptainer definition for ISCPS Project Lab - Agentic Driving Coach.
 #
 # Ubuntu 22.04 provides the manylinux_2_34 userspace the Xronos 0.12 wheels
 # need (Sol's Rocky Linux 8 host glibc is too old). The image contains the

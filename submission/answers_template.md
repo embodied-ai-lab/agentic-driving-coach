@@ -1,4 +1,4 @@
-# ISCPS Project Lab 1 - Agentic Driving Coach
+# ISCPS Project Lab - Agentic Driving Coach
 
 ## Submission answers
 

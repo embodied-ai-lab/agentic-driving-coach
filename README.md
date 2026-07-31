@@ -1,4 +1,4 @@
-# ISCPS Project Lab 1 - Agentic Driving Coach
+# ISCPS Project Lab - Agentic Driving Coach
 
 This project puts a small local LLM inside the control loop of a simulated car
 approaching a stop sign. You will use Xronos reactors to study logical time,
@@ -13,7 +13,7 @@ Before you begin the technical work:
 2. Select **Use this template**.
 3. Select **Create a new repository**.
 4. Create the repository under your or your group's GitHub account.
-5. Choose a clear repository name.
+5. Choose a clear repository name (e.g., my-agentic-driving-coach).
 6. Set the visibility to **Private**.
 7. Do not publish course work in a public repository.
 8. Add only your project partners as collaborators.
