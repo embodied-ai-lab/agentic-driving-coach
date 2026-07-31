@@ -1,0 +1,210 @@
+# ISCPS Project Lab 1 - Agentic Driving Coach
+
+This project puts a small local LLM inside the control loop of a simulated car
+approaching a stop sign. You will use Xronos reactors to study logical time,
+wall-clock inference latency, deadline misses, deterministic fallback, and
+physical stopping outcomes. ASU Sol is the primary platform.
+
+## Create your private repository
+
+Before you begin the technical work:
+
+1. Open this GitHub template repository.
+2. Select **Use this template**.
+3. Select **Create a new repository**.
+4. Create the repository under your or your group's GitHub account.
+5. Choose a clear repository name.
+6. Set the visibility to **Private**.
+7. Do not publish course work in a public repository.
+8. Add only your project partners as collaborators.
+9. Clone your newly created private repository, not this template repository.
+10. Do your course work and commits in that private repository.
+
+A private repository protects your work and keeps your course submission
+separate from the shared starter repository. For example:
+
+```bash
+git clone git@github.com:<OWNER>/<PRIVATE_REPOSITORY>.git
+cd <PRIVATE_REPOSITORY>
+```
+
+## Run on ASU Sol
+
+Use Sol for the primary workflow. Login nodes are for cloning, editing, and
+submitting jobs. Build the image, run Python, download models, and run
+inference only inside a compute allocation.
+
+Clone your private repository into scratch:
+
+```bash
+cd /scratch/$USER
+git clone git@github.com:<OWNER>/<PRIVATE_REPOSITORY>.git
+cd <PRIVATE_REPOSITORY>
+```
+
+Request a CPU allocation, load the required modules, and build the image:
+
+```bash
+interactive -A class_cse494598fall2026 -p public -q public -t 30 -c 4
+module load apptainer/1.4.5 squashfs-4.6.1-gcc-11.2.0
+cd /scratch/$USER/<PRIVATE_REPOSITORY>
+apptainer build /scratch/$USER/agentic-driving-coach.sif \
+    containers/Apptainer.def
+```
+
+Define two helpers in the allocation:
+
+```bash
+export SIF=/scratch/$USER/agentic-driving-coach.sif
+coach() {
+    apptainer exec "$SIF" env PYTHONPATH=src \
+        python -m agentic_driving_coach "$@"
+}
+coachpy() {
+    apptainer exec "$SIF" env PYTHONPATH=src python "$@"
+}
+```
+
+Check the environment and run the four Xronos examples:
+
+```bash
+coach doctor
+coachpy scripts/check_environment.py
+coachpy examples/01_hello_reactor.py
+coachpy examples/02_timer_and_ports.py
+coachpy examples/03_logical_delay.py
+coachpy examples/04_deadline_lag.py
+```
+
+Run the deterministic rule and replay baselines:
+
+```bash
+coach run --scenario stop-sign --driver beginner \
+    --coach rule --fast --output results/rule-a
+coach run --scenario stop-sign --driver beginner \
+    --coach rule --fast --output results/rule-b
+coach run --scenario stop-sign --driver beginner \
+    --coach replay --trace data/replay/example_trace.jsonl --fast \
+    --output results/replay
+```
+
+Exit the CPU allocation. For live models, request a GPU allocation and start
+Ollama there:
+
+```bash
+exit
+interactive -A class_cse494598fall2026 -p htc -q public -t 60 -c 8 \
+    --mem=24G --gres=gpu:a100.20gb=1
+module load apptainer/1.4.5 zstd-1.5.2-gcc-11.2.0
+cd /scratch/$USER/<PRIVATE_REPOSITORY>
+
+mkdir -p /scratch/$USER/ollama
+curl -fL https://ollama.com/download/ollama-linux-amd64.tar.zst \
+    -o /scratch/$USER/ollama-linux-amd64.tar.zst
+zstd -dc /scratch/$USER/ollama-linux-amd64.tar.zst \
+    | tar -xf - -C /scratch/$USER/ollama
+
+export PATH=/scratch/$USER/ollama/bin:$PATH
+export OLLAMA_MODELS=/scratch/$USER/ollama-models
+export OLLAMA_HOST=http://127.0.0.1:11434
+ollama serve > ollama-live.log 2>&1 &
+OLLAMA_PID=$!
+trap 'kill "$OLLAMA_PID" 2>/dev/null || true' EXIT
+
+ollama pull llama3.2:1b
+ollama pull llama3.2:3b
+ollama list
+```
+
+Define `SIF`, `coach`, and `coachpy` again as shown above. Then warm the
+models and run one live trial for each:
+
+```bash
+coach doctor --live --warm --models llama3.2:1b llama3.2:3b \
+    --warmup-timeout-s 600
+coach run --scenario stop-sign --driver beginner \
+    --coach ollama --model llama3.2:1b --deadline-ms 1700 \
+    --output results/live-1b
+coach run --scenario stop-sign --driver beginner \
+    --coach ollama --model llama3.2:3b --deadline-ms 1700 \
+    --output results/live-3b
+coach compare-behaviors \
+    --model llama3.2:3b --drivers beginner advanced \
+    --repetitions 3 --deadline-ms 1700 \
+    --output results/behavior-comparison
+```
+
+The required Sol deadline is 1,700 milliseconds. Keep the same driver,
+prompt, deadline, and temperature when comparing models.
+
+The provided batch script is the canonical model-comparison run. It starts and
+stops its own Ollama server, uses models already stored in scratch, runs three
+repetitions per model, and checks for numeric latency samples:
+
+```bash
+exit
+cd /scratch/$USER/<PRIVATE_REPOSITORY>
+sbatch slurm/run_agentic_driving_coach.sbatch
+squeue -u "$USER"
+```
+
+Results appear under `results/model-comparison-<jobid>/`. Each comparison
+creates `comparison.csv`, `comparison.json`, `comparison.png`, and one
+directory per run. A standalone run creates `run.csv`, `summary.json`,
+`trace.jsonl`, `manifest.json`, and `run_overview.png`.
+
+Create `submission/answers.md` once, fill it in, and then build the submission
+ZIP inside a CPU allocation:
+
+```bash
+cp submission/answers_template.md submission/answers.md
+# Fill in submission/answers.md before continuing.
+
+interactive -A class_cse494598fall2026 -p public -q public -t 15 -c 2
+module load apptainer/1.4.5
+cd /scratch/$USER/<PRIVATE_REPOSITORY>
+apptainer exec /scratch/$USER/agentic-driving-coach.sif \
+    env PYTHONPATH=src python scripts/make_submission.py \
+    --asurite <your_asurite>
+```
+
+Read [ASSIGNMENT.md](ASSIGNMENT.md) for the questions, required repetitions,
+deliverables, and rubric.
+
+## Optional: run on your own Linux machine
+
+Ubuntu 22.04 or newer with Python 3.10 through 3.13 is supported. WSL2 may be
+used as a Linux environment.
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip "setuptools>=68"
+pip install -e .
+python -m agentic_driving_coach doctor
+coach() { python -m agentic_driving_coach "$@"; }
+coachpy() { python "$@"; }
+```
+
+Install and start Ollama for live model runs. Use the same commands as on Sol,
+but a local deadline may differ from the required Sol value because inference
+latency depends on the machine.
+
+## System summary
+
+Driver commands reach Car after a 500 ms logical delay. Coach emergency
+actuation reaches Car after a 200 ms logical delay. Environment provides the
+distance to the stop sign. The hierarchical Coach contains inference and
+planning reactors. It can use a rule policy, a replay trace, or live Ollama
+responses, and it applies the deterministic fallback when a response is late,
+unsafe, or malformed. Recorder writes the result files used in the assignment.
+
+The system follows *Agentic Driving Coach*
+([arXiv:2604.11705](https://arxiv.org/abs/2604.11705)). The original Lingua
+Franca implementation is reimplemented here with the Xronos SDK 0.12.
+
+## License
+
+BSD 2-Clause. This repository is adapted from the BSD-2-licensed
+[Agentic Driving Coach implementation](https://github.com/asu-kim/agentic-driving-coach).
+See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

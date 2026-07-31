@@ -1,0 +1,42 @@
+# Example inference trace for the ReplayCoach (JSON Lines; '#' lines are comments).
+# Synthetic but format-identical to a live-recorded trace: rule-policy tokens with
+# seeded pseudo-latencies, two deadline misses (latency > 300 ms) and one malformed
+# response, so a replayed run exercises fallback and late-response handling.
+# A live run writes the same format to results/<run>/trace.jsonl, which can be
+# replayed with --coach replay --trace ...
+{"request_id": 0, "logical_elapsed_ms": 500.0, "distance_m": 98.98, "velocity_mps": 10.2, "raw_response": "NONE|", "latency_ms": 158.86, "error": null, "deadline_miss": false}
+{"request_id": 1, "logical_elapsed_ms": 700.0, "distance_m": 96.88, "velocity_mps": 10.599999999999998, "raw_response": "NONE|", "latency_ms": 138.102, "error": null, "deadline_miss": false}
+{"request_id": 2, "logical_elapsed_ms": 900.0000000000001, "distance_m": 94.719, "velocity_mps": 10.809999999999997, "raw_response": "NONE|", "latency_ms": 198.112, "error": null, "deadline_miss": false}
+{"request_id": 3, "logical_elapsed_ms": 1100.0, "distance_m": 92.554, "velocity_mps": 10.829999999999997, "raw_response": "NONE|", "latency_ms": 128.692, "error": null, "deadline_miss": false}
+{"request_id": 4, "logical_elapsed_ms": 1299.9999999999998, "distance_m": 90.366, "velocity_mps": 11.039999999999996, "raw_response": "NONE|", "latency_ms": 184.306, "error": null, "deadline_miss": false}
+{"request_id": 5, "logical_elapsed_ms": 1500.0, "distance_m": 88.098, "velocity_mps": 11.439999999999994, "raw_response": "NONE|", "latency_ms": 163.883, "error": null, "deadline_miss": false}
+{"request_id": 6, "logical_elapsed_ms": 1699.9999999999998, "distance_m": 85.75, "velocity_mps": 11.839999999999993, "raw_response": "NONE|", "latency_ms": 126.96, "error": null, "deadline_miss": false}
+{"request_id": 7, "logical_elapsed_ms": 1899.9999999999998, "distance_m": 83.322, "velocity_mps": 12.239999999999991, "raw_response": "NONE|", "latency_ms": 180.892, "error": null, "deadline_miss": false}
+{"request_id": 8, "logical_elapsed_ms": 2100.0, "distance_m": 80.833, "velocity_mps": 12.44999999999999, "raw_response": "NONE|", "latency_ms": 429.383, "error": null, "deadline_miss": true}
+{"request_id": 9, "logical_elapsed_ms": 2600.0, "distance_m": 74.605, "velocity_mps": 12.43999999999999, "raw_response": "NONE|", "latency_ms": 128.383, "error": null, "deadline_miss": false}
+{"request_id": 10, "logical_elapsed_ms": 2800.0, "distance_m": 72.114, "velocity_mps": 12.45999999999999, "raw_response": "NONE|", "latency_ms": 130.886, "error": null, "deadline_miss": false}
+{"request_id": 11, "logical_elapsed_ms": 3000.0, "distance_m": 69.62100000000001, "velocity_mps": 12.45999999999999, "raw_response": "NONE|", "latency_ms": 170.942, "error": null, "deadline_miss": false}
+{"request_id": 12, "logical_elapsed_ms": 3200.0, "distance_m": 67.132, "velocity_mps": 12.43999999999999, "raw_response": "NONE|", "latency_ms": 219.222, "error": null, "deadline_miss": false}
+{"request_id": 13, "logical_elapsed_ms": 3500.0, "distance_m": 63.406000000000006, "velocity_mps": 12.409999999999991, "raw_response": "NONE|", "latency_ms": 134.856, "error": null, "deadline_miss": false}
+{"request_id": 14, "logical_elapsed_ms": 3700.0, "distance_m": 60.92700000000001, "velocity_mps": 12.389999999999992, "raw_response": "I think you should slow down a little.", "latency_ms": 146.789, "error": null, "deadline_miss": false}
+{"request_id": 15, "logical_elapsed_ms": 3900.0, "distance_m": 58.452000000000005, "velocity_mps": 12.369999999999992, "raw_response": "WARNING|Adjust speed and prepare to stop.", "latency_ms": 195.292, "error": null, "deadline_miss": false}
+{"request_id": 16, "logical_elapsed_ms": 4100.0, "distance_m": 55.98100000000001, "velocity_mps": 12.349999999999993, "raw_response": "WARNING|Adjust speed and prepare to stop.", "latency_ms": 233.725, "error": null, "deadline_miss": false}
+{"request_id": 17, "logical_elapsed_ms": 4400.0, "distance_m": 52.28200000000001, "velocity_mps": 12.319999999999993, "raw_response": "WARNING|Adjust speed and prepare to stop.", "latency_ms": 189.252, "error": null, "deadline_miss": false}
+{"request_id": 18, "logical_elapsed_ms": 4600.0, "distance_m": 49.82100000000001, "velocity_mps": 12.299999999999994, "raw_response": "NONE|", "latency_ms": 167.602, "error": null, "deadline_miss": false}
+{"request_id": 19, "logical_elapsed_ms": 4800.0, "distance_m": 47.36400000000001, "velocity_mps": 12.279999999999994, "raw_response": "NONE|", "latency_ms": 237.151, "error": null, "deadline_miss": false}
+{"request_id": 20, "logical_elapsed_ms": 5100.0, "distance_m": 43.686000000000014, "velocity_mps": 12.249999999999995, "raw_response": "NONE|", "latency_ms": 125.59, "error": null, "deadline_miss": false}
+{"request_id": 21, "logical_elapsed_ms": 5300.000000000001, "distance_m": 41.23900000000002, "velocity_mps": 12.229999999999995, "raw_response": "NONE|", "latency_ms": 223.016, "error": null, "deadline_miss": false}
+{"request_id": 22, "logical_elapsed_ms": 5600.0, "distance_m": 37.57600000000002, "velocity_mps": 12.199999999999996, "raw_response": "NONE|", "latency_ms": 383.081, "error": null, "deadline_miss": true}
+{"request_id": 23, "logical_elapsed_ms": 5999.999999999999, "distance_m": 32.706000000000024, "velocity_mps": 12.159999999999997, "raw_response": "NONE|", "latency_ms": 134.135, "error": null, "deadline_miss": false}
+{"request_id": 24, "logical_elapsed_ms": 6200.0, "distance_m": 30.277000000000026, "velocity_mps": 12.139999999999997, "raw_response": "NONE|", "latency_ms": 157.018, "error": null, "deadline_miss": false}
+{"request_id": 25, "logical_elapsed_ms": 6400.0, "distance_m": 27.852000000000025, "velocity_mps": 12.119999999999997, "raw_response": "NONE|", "latency_ms": 217.935, "error": null, "deadline_miss": false}
+{"request_id": 26, "logical_elapsed_ms": 6700.0, "distance_m": 24.216000000000026, "velocity_mps": 12.109999999999998, "raw_response": "ACTUATE|Brake now.", "latency_ms": 141.687, "error": null, "deadline_miss": false}
+{"request_id": 27, "logical_elapsed_ms": 6900.0, "distance_m": 21.793000000000028, "velocity_mps": 12.109999999999998, "raw_response": "ACTUATE|Brake now.", "latency_ms": 189.792, "error": null, "deadline_miss": false}
+{"request_id": 28, "logical_elapsed_ms": 7100.0, "distance_m": 19.37200000000003, "velocity_mps": 12.109999999999998, "raw_response": "ACTUATE|Brake now.", "latency_ms": 196.67, "error": null, "deadline_miss": false}
+{"request_id": 29, "logical_elapsed_ms": 7300.0, "distance_m": 15.923000000000027, "velocity_mps": 11.189999999999998, "raw_response": "ACTUATE|Brake now.", "latency_ms": 164.688, "error": null, "deadline_miss": false}
+{"request_id": 30, "logical_elapsed_ms": 7500.0, "distance_m": 13.684000000000028, "velocity_mps": 11.189999999999998, "raw_response": "ACTUATE|Brake now.", "latency_ms": 185.729, "error": null, "deadline_miss": false}
+{"request_id": 31, "logical_elapsed_ms": 7700.0, "distance_m": 10.509000000000027, "velocity_mps": 10.289999999999997, "raw_response": "ACTUATE|Brake now.", "latency_ms": 127.535, "error": null, "deadline_miss": false}
+{"request_id": 32, "logical_elapsed_ms": 7899.999999999999, "distance_m": 8.454000000000027, "velocity_mps": 10.269999999999998, "raw_response": "ACTUATE|Brake now.", "latency_ms": 127.152, "error": null, "deadline_miss": false}
+{"request_id": 33, "logical_elapsed_ms": 8027.535, "distance_m": 6.488000000000028, "velocity_mps": 9.379999999999997, "raw_response": "ACTUATE|Brake now.", "latency_ms": 144.715, "error": null, "deadline_miss": false}
+{"request_id": 34, "logical_elapsed_ms": 8200.0, "distance_m": 4.613000000000029, "velocity_mps": 9.379999999999997, "raw_response": "ACTUATE|Brake now.", "latency_ms": 201.648, "error": null, "deadline_miss": false}
+{"request_id": 35, "logical_elapsed_ms": 8500.0, "distance_m": 1.1340000000000294, "velocity_mps": 8.469999999999997, "raw_response": "ACTUATE|Brake now.", "latency_ms": 171.311, "error": null, "deadline_miss": false}
