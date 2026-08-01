@@ -2,13 +2,13 @@
 
 ## Submission answers
 
-- Name / ASURITE:
+- GROUPID / NAMES:
 - Course: CSE 494 / CSE 598 (delete one)
 - Date:
 - Machine used (local / Sol / both):
 
 > Copy this file to `submission/answers.md`, fill it in, then build the zip:
-> `python scripts/make_submission.py --asurite <you>`.
+> `python scripts/make_submission.py --groupid <your_groupid>`.
 > Keep answers short. Cite figure files by path where asked.
 
 ## 0. Environment

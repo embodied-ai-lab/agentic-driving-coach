@@ -2,9 +2,9 @@
 """Build the submission archive for Canvas.
 
 Usage:
-    python scripts/make_submission.py --asurite your_asurite \
+    python scripts/make_submission.py --groupid your_groupid \
         [--results results/...]...
-        [--zip submission/<asurite>_agentic-driving-coach.zip]
+        [--zip submission/group<groupid>_agentic-driving-coach.zip]
 
 Included:
 - submission/answers.md (your filled-in copy of answers_template.md)
@@ -65,7 +65,7 @@ def _git_modified_files() -> list[Path] | None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--asurite", required=True, help="your ASURITE id (names the zip)")
+    parser.add_argument("--groupid", required=True, help="your group (names the zip)")
     parser.add_argument(
         "--results",
         action="append",
@@ -78,7 +78,7 @@ def main() -> int:
 
     out_zip = (
         args.zip
-        or REPO / "submission" / f"{args.asurite}_agentic-driving-coach.zip"
+        or REPO / "submission" / f"group{args.groupid}_agentic-driving-coach.zip"
     )
     answers = REPO / "submission" / "answers.md"
     if not answers.exists():

@@ -279,12 +279,12 @@ unrelated generated files.
 
 ```bash
 cp submission/answers_template.md submission/answers.md   # then fill it in
-coachpy scripts/make_submission.py --asurite <your_asurite>
+coachpy scripts/make_submission.py --groupid <your_groupid>
 ```
 
 The script bundles your answers, the required CSV/JSON summaries, figures,
 and any source/config files you modified, and refuses weights/venvs/caches.
-On Sol, `scp` the resulting `submission/<asurite>_agentic-driving-coach.zip` to your machine
+On Sol, `scp` the resulting `submission/group<groupid>_agentic-driving-coach.zip` to your machine
 and upload it to Canvas.
 
 ---

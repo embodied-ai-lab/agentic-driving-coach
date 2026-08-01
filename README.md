@@ -174,7 +174,7 @@ module load apptainer/1.4.5
 cd /scratch/$USER/<PRIVATE_REPOSITORY>
 apptainer exec /scratch/$USER/agentic-driving-coach.sif \
     env PYTHONPATH=src python scripts/make_submission.py \
-    --asurite <your_asurite>
+    --groupid <groupid>
 ```
 
 Read [ASSIGNMENT.md](ASSIGNMENT.md) for the questions, required repetitions,
