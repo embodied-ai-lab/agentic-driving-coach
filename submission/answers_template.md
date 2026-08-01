@@ -9,6 +9,7 @@
 
 > Copy this file to `submission/answers.md`, fill it in, then build the zip:
 > `python scripts/make_submission.py --groupid <your_groupid>`.
+> The zip also contains the complete project code and required results.
 > Keep answers short. Cite figure files by path where asked.
 
 ## 0. Environment

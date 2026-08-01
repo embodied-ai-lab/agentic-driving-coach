@@ -177,6 +177,15 @@ apptainer exec /scratch/$USER/agentic-driving-coach.sif \
     --groupid <groupid>
 ```
 
+The submission ZIP includes `answers.md`, the complete project source and
+configuration, and the required experiment results. Project files are included
+whether or not they have been committed to Git. Review the ZIP contents before
+uploading it:
+
+```bash
+unzip -l submission/group<groupid>_agentic-driving-coach.zip
+```
+
 Read [ASSIGNMENT.md](ASSIGNMENT.md) for the questions, required repetitions,
 deliverables, and rubric.
 

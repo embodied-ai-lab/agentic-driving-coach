@@ -282,10 +282,18 @@ cp submission/answers_template.md submission/answers.md   # then fill it in
 coachpy scripts/make_submission.py --groupid <your_groupid>
 ```
 
-The script bundles your answers, the required CSV/JSON summaries, figures,
-and any source/config files you modified, and refuses weights/venvs/caches.
-On Sol, `scp` the resulting `submission/group<groupid>_agentic-driving-coach.zip` to your machine
-and upload it to Canvas.
+The submission ZIP includes `answers.md`, the complete project source and
+configuration, and the required experiment results. Project files are included
+whether or not they have been committed to Git. It excludes model weights,
+virtual environments, SIF images, archives, and caches.
+
+Review the ZIP contents before uploading it:
+
+```bash
+unzip -l submission/group<groupid>_agentic-driving-coach.zip
+```
+
+On Sol, `scp` the ZIP to your machine and upload it to Canvas.
 
 ---
 
