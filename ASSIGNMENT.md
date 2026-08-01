@@ -294,14 +294,3 @@ unzip -l submission/group<groupid>_agentic-driving-coach.zip
 ```
 
 On Sol, `scp` the ZIP to your machine and upload it to Canvas.
-
----
-
-## Ungraded note - why this is not (yet) a VLM lab
-
-The coach consumes structured *text* state (`distance`, `velocity`) and
-`llama3.2:1b/3b` are text-only models: this is an **LLM**-in-the-loop lab. A
-*vision*-language-model version would need camera frames from the simulator,
-image preprocessing in the reactor graph, and a fundamentally different
-evaluation (perception latency and errors dominate). That is a possible
-research extension, not part of this lab.
