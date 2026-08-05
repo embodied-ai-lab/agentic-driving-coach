@@ -210,7 +210,7 @@ deadline-miss rate, safe-bound violations, stopping outcome** - plus:
 
 ---
 
-## CSE 598 graduate extension (1 pt)
+## Part 5 - CSE 598 graduate extension (1 pt)
 
 Choose **one**. Each requires: a one-sentence **hypothesis**, one **code or
 configuration extension**, a **controlled baseline**, **one table or plot**,
