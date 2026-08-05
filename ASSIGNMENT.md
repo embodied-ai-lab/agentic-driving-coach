@@ -272,7 +272,7 @@ unrelated generated files.
   repetitions, and a metric-based latency-versus-quality conclusion.
 - Part 4, 1 point: controlled behavior or scenario comparison with the
   required metrics, one plot, and a number-based interpretation.
-- CSE 598 extension, 1 additional point: one implemented option with a
+- Part 5, CSE 598 extension, 1 additional point: one implemented option with a
   hypothesis, controlled baseline, table or plot, and validity limitation.
 
 ## Submission command
@@ -294,3 +294,13 @@ unzip -l submission/group<groupid>_agentic-driving-coach.zip
 ```
 
 On Sol, `scp` the ZIP to your machine and upload it to Canvas.
+
+## Generative AI policy
+
+You may use generative AI as an assistant for clarifying concepts, debugging,
+organizing ideas, or improving writing. You may not rely on it to complete this
+project without understanding the work. Every group member is responsible for
+reviewing, testing, and understanding the submitted code, experiments, results,
+and written answers, and must be able to explain the implementation and design
+choices. Work that relies on generative AI without demonstrated understanding
+may receive reduced credit for the affected parts.
