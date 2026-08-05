@@ -11,6 +11,10 @@ This project examines how logical time, wall-clock inference latency, response
 quality, and deterministic fallback affect a simulated car approaching a stop
 sign.
 
+For more context, please feel free to refer to the
+[demo video](https://youtu.be/ucXgmFU9k_4?si=-bnngLY0c4ku8Kc_) and 
+[technical paper](https://arxiv.org/pdf/2604.11705) of the agentic driving coach.
+
 ## Learning objectives
 
 After completing the project, you should be able to:
