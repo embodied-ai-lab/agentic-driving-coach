@@ -54,7 +54,7 @@ cd <PRIVATE_REPOSITORY>
 Request a CPU allocation, load the required modules, and build the image:
 
 ```bash
-interactive -A class_cse494598fall2026 -p public -q public -t 30 -c 4
+interactive -A class_cse494598fall2026 -p public -q class -t 30 -c 4
 module load apptainer/1.4.5 squashfs-4.6.1-gcc-11.2.0
 cd /scratch/$USER/<PRIVATE_REPOSITORY>
 apptainer build /scratch/$USER/agentic-driving-coach.sif \
@@ -102,7 +102,7 @@ Ollama there:
 
 ```bash
 exit
-interactive -A class_cse494598fall2026 -p htc -q public -t 60 -c 8 \
+interactive -A class_cse494598fall2026 -p htc -q class -t 60 -c 8 \
     --mem=24G --gres=gpu:a100.20gb=1
 module load apptainer/1.4.5 zstd-1.5.2-gcc-11.2.0
 cd /scratch/$USER/<PRIVATE_REPOSITORY>
