@@ -169,7 +169,7 @@ ZIP inside a CPU allocation:
 cp submission/answers_template.md submission/answers.md
 # Fill in submission/answers.md before continuing.
 
-interactive -A class_cse494598fall2026 -p public -q public -t 15 -c 2
+interactive -A class_cse494598fall2026 -p public -q class -t 15 -c 2
 module load apptainer/1.4.5
 cd /scratch/$USER/<PRIVATE_REPOSITORY>
 apptainer exec /scratch/$USER/agentic-driving-coach.sif \
