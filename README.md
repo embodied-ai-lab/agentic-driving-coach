@@ -14,6 +14,12 @@ wall-clock inference latency, deadline misses, deterministic fallback, and
 physical stopping outcomes. Arizona State University (ASU)'s
 [Sol Supercomputer](https://docs.rc.asu.edu/about) is the primary platform.
 
+This project lab is inspired by *Agentic Driving Coach*
+([arXiv:2604.11705](https://arxiv.org/abs/2604.11705)) by Deeksha Prahlad, Daniel Fan, and Hokeun Kim
+(to appear in the proceedings of [FMSys'26](https://fmsys-org.github.io/2026/program.html#main))
+and this lab uses
+[Xronos Python SDK](https://docs.xronos.com/python_sdk/getting_started.html) 0.12.0 for its reactor implementation.
+
 ## Create your private repository
 
 Before you begin the technical work:
@@ -36,6 +42,9 @@ separate from the shared starter repository. For example:
 git clone git@github.com:<OWNER>/<PRIVATE_REPOSITORY>.git
 cd <PRIVATE_REPOSITORY>
 ```
+
+`<OWNER>` above should be replaced with your (or your project partner's) GitHub username,
+and `<PRIVATE_REPOSITORY>` should be replaced with your repository.
 
 ## Run on ASU Sol
 
