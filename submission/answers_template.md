@@ -26,6 +26,10 @@ about your setup (or "nothing unusual"):
 
 **1.3 Lag and slack under an overrunning handler (example 04):**
 
+**1.4 Retroactive fallback (example 05): peak lag A vs. B; when each
+fallback fired relative to the deadline; why A is not enforcement and which
+two constructs implement B:**
+
 ## 2. Deterministic baseline (1 pt)
 
 **2.1 The five reactors and their jobs (one line each):**
@@ -48,6 +52,17 @@ about your setup (or "nothing unusual"):
 
 **2.4 File + key/line where the 500 ms and 200 ms delays are configured:**
 
+**2.5 Actuation arming (logical times of first ACTUATE decision / first
+actuation / first applied EMERGENCY_BRAKING, plus one sentence per gap):**
+
+**2.6 Hands on a reactor (paste your diff; predicted vs. observed new
+instruction count and time(s); why actuations and the stopping outcome are
+unchanged):**
+
+```diff
+(your planner.py diff here)
+```
+
 ## 3. Model comparison (1 pt)
 
 Command used (paste exactly):
@@ -56,6 +71,8 @@ Command used (paste exactly):
 |---|---|---|---|---|---|---|---|---|
 | llama3.2:1b |  |  |  |  |  |  |  |  |
 | llama3.2:3b |  |  |  |  |  |  |  |  |
+| replay 1b @300 ms (if used) | 1 |  |  |  |  |  |  |  |
+| replay 3b @300 ms (if used) | 1 |  |  |  |  |  |  |  |
 
 Figure: `results/model-comparison/comparison.png`
 

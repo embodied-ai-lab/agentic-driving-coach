@@ -1,7 +1,7 @@
 # ISCPS Project Lab: Agentic Driving Coach
 
 CSE 494/598 · 4 points (common) + 1 point (CSE 598 extension) ·
-estimated 3-5 hours after setup
+estimated 4-6 hours after setup
 
 Record every answer in `submission/answers.md` (copy
 `submission/answers_template.md`). Keep answers short - numbers, one-liners,
@@ -40,26 +40,40 @@ coachpy examples/01_hello_reactor.py
 coachpy examples/02_timer_and_ports.py
 coachpy examples/03_logical_delay.py
 coachpy examples/04_deadline_lag.py
+coachpy examples/05_retroactive_fallback.py    # real time, ~4 s
 ```
 
 Confirm that the environment check writes `results/environment.txt` and that
-all four examples terminate normally.
+all five examples terminate normally.
 
 ---
 
 ## Part 1 - Xronos timing warm-up (1 pt)
 
-Re-run examples 02, 03, and 04 (`coachpy examples/02_timer_and_ports.py`,
-etc.) and answer **three short questions** (2-3 sentences each):
+Re-run examples 02-05 (`coachpy examples/02_timer_and_ports.py`, etc.) and
+answer **four short questions** (2-3 sentences each unless stated):
 
 1. **Logical time.** In examples 02 and 03, which printed events carry
    *logical* timestamps, and how can you tell they are logical rather than
    wall-clock measurements?
-2. **Logical delay.** In example 03, where in the *code* is the 500 ms delay
-   configured, and where in the *output* is it visible?
+2. **Logical delay - predict, then run.** In example 03, where in the *code*
+   is the 500 ms delay configured, and where in the *output* is it visible?
+   Then, **before rerunning anything**, write down exactly what the output
+   will show if you change that delay to 300 ms (which lines change, to what
+   values). Make the edit, rerun, and report your prediction, whether it
+   matched, and one sentence on why every arrival lands at *exactly*
+   send + delay, with no jitter. Revert the edit afterwards
+   (`git checkout -- examples/03_logical_delay.py`).
 3. **Lag and slack.** In example 04, what happens to `lag` (of the monitor)
    and `slack` (of the worker) when the worker's handler runs ~80 ms against
    a 50 ms deadline? One sentence on why the *next* monitor tick recovers.
+4. **The retroactive fallback.** From example 05's output: report the
+   monitor's peak lag in Phase A vs. Phase B, and how long after the
+   deadline moment (request + 400 ms) each phase's fallback actually fired.
+   Then 2-3 sentences: why is Phase A's after-the-fact check *not* deadline
+   enforcement, and which two constructs implement the enforceable race in
+   Phase B (the live coach swaps one of them for a `PhysicalEvent` in
+   `src/agentic_driving_coach/reactors/coach.py`)?
 
 ---
 
@@ -86,8 +100,10 @@ Report (short answers / one table):
    `src/agentic_driving_coach/reactors/` and
    `src/agentic_driving_coach/scenario.py`).
 2. **Determinism.** Compare `results/rule-a/summary.json` and
-   `results/rule-b/summary.json` (e.g. `diff <(jq 'del(.run_id)' ...)`, or
-   any field-by-field check ignoring `run_id`). Are the two runs identical?
+   `results/rule-b/summary.json` (e.g.
+   `diff <(jq 'del(.run_id, .xronos_lag)' ...)`, or any field-by-field check
+   ignoring `run_id` and `xronos_lag`). Are all remaining fields identical?
+   (`xronos_lag` aggregates a wall-clock measurement even in `--fast` mode.)
    Which columns of `run.csv` are *expected* to differ between repeats, and
    why exactly those?
 3. **Stopping outcome.** From `results/rule-a/summary.json`: `stopped`,
@@ -96,6 +112,35 @@ Report (short answers / one table):
 4. **Delays.** Name the file and line(s)/keys where the 500 ms and 200 ms
    logical delays are configured (hint: one place in `configs/`, one place in
    `src/agentic_driving_coach/scenario.py`).
+5. **Actuation arming.** From `results/rule-a/run.csv`, report the logical
+   times of (a) the first decision with `coach_token = ACTUATE`, (b) the
+   first non-empty `actuation`, and (c) the first row with
+   `applied_action = EMERGENCY_BRAKING`. Explain each of the two gaps in one
+   sentence (hints: the Planner *arms* on the first ACTUATE decision and
+   *fires* on the next in `reactors/planner.py`; the actuation then travels
+   over a delayed connection from Part 2 question 4).
+6. **Hands on a reactor - predict, then run.** The Planner never tells the
+   driver the coast is clear: on a NONE decision in WARNING mode it
+   de-escalates silently. Edit `Planner.decide`
+   (`src/agentic_driving_coach/reactors/planner.py`) so the
+   WARNING -> MONITORING branch also emits an instruction - add
+   `instruction_out.set("[VERBAL] NONE | Back within the safe band.")` to
+   the `elif token is CoachToken.NONE ...` branch (set the port directly;
+   the `speak` helper deduplicates, which an all-clear should not do).
+   **Before running**, predict from your `results/rule-a/run.csv`
+   `planner_mode` column how many new instruction rows this adds to the
+   rule-beginner run and at which logical time(s). Then:
+
+   ```bash
+   coach run --scenario stop-sign --driver beginner \
+       --coach rule --fast --output results/rule-deescalate
+   ```
+
+   Report: your diff, predicted vs. observed count and time(s) of the new
+   instruction(s), and confirmation that `actuation_count` and the stopping
+   outcome are unchanged - plus one sentence on *why* they must be. Then
+   revert (`git checkout -- src/agentic_driving_coach/reactors/planner.py`)
+   so Parts 3-4 run the reference coach.
 
 ---
 
@@ -182,6 +227,26 @@ misses, your platform's latency floor sits above the deadline: use the value
 prescribed for your platform (1700 on Sol), or raise `--deadline-ms` until at
 least one model mostly meets it - and report the value you used and how you
 chose it.
+
+**Seeing the tight-deadline regime on any platform.** If your platform hides
+the deadline pressure entirely (Sol at 1700 ms typically shows 0% misses),
+replay the two shipped workstation traces:
+`data/replay/live_llama3.2-1b_300ms.jsonl` and
+`data/replay/live_llama3.2-3b_300ms.jsonl` (beginner driver, 300 ms deadline,
+RTX 3060 workstation; provenance is recorded in each trace header):
+
+```bash
+coach run --scenario stop-sign --driver beginner \
+    --coach replay --trace data/replay/live_llama3.2-1b_300ms.jsonl \
+    --fast --output results/replay-1b-300        # and likewise for ...-3b...
+```
+
+Add the two replay rows to your Part 3 table and mark them as replays. They
+are deterministic, so one run each suffices, and reproduce the recorded
+misses, fallbacks, and late discards exactly. Compare them with your live
+rows: what does a deadline below the platform's latency floor do to coaching,
+and which model pays for its on-time answers with quality (check
+`unsafe_false_negatives`)?
 
 ---
 
