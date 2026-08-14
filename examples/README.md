@@ -10,7 +10,7 @@ coachpy examples/01_hello_reactor.py
 coachpy examples/02_timer_and_ports.py
 coachpy examples/03_logical_delay.py
 coachpy examples/04_deadline_lag.py
-coachpy examples/05_retroactive_fallback.py    # real time, about 4 s
+coachpy examples/05_retroactive_fallback.py
 ```
 
 The diagrams show program structure, not a timeline or an execution trace.
