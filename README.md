@@ -94,6 +94,10 @@ coachpy examples/03_logical_delay.py
 coachpy examples/04_deadline_lag.py
 ```
 
+See the [annotated Xronos examples guide](examples/README.md) for all five
+warm-ups, including the real-time deadline-race example, and for diagrams that
+map each program's Python declarations to its reactor topology.
+
 Run the deterministic rule and replay baselines:
 
 ```bash
@@ -232,6 +236,25 @@ The [original implementation](https://github.com/asu-kim/agentic-driving-coach)
 using [Lingua Franca](https://www.lf-lang.org/)
 is reimplemented here with the
 [Xronos Python SDK](https://docs.xronos.com/python_sdk/getting_started.html) 0.120.
+
+### Reactor topology
+
+[![Reactor topology of the Agentic Driving Coach](diagrams/agentic_driving_coach_overview.png)](diagrams/agentic_driving_coach_overview.png)
+
+The closed loop runs from the driver's 100 ms timer through the car and
+environment to the hierarchical coach. Inside the coach, the inference child
+races a response against a deadline before the planner emits an instruction or
+actuation. The two driver commands cross 500 ms delayed connections, and coach
+actuation returns to the car over a 200 ms delayed connection. In the figure,
+chevrons are reactions, clock-faced circles are periodic timers, `L` triangles
+are programmable logical timers, and a slashed connection carries the labeled
+logical delay. Click the image to inspect the full-size topology.
+
+The overview omits recorder taps for readability. The
+[complete topology including the Recorder](diagrams/agentic_driving_coach.png)
+and the [live-inference topology](diagrams/agentic_driving_coach_live.png) are
+also available, while the individual warm-up diagrams are explained in
+[`examples/README.md`](examples/README.md).
 
 ## License
 

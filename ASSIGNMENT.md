@@ -53,6 +53,13 @@ all five examples terminate normally.
 Re-run examples 02-05 (`coachpy examples/02_timer_and_ports.py`, etc.) and
 answer **four short questions** (2-3 sentences each unless stated):
 
+Use the [annotated examples guide](examples/README.md) to read each program's
+topology before comparing it with the terminal output. Rounded boxes are
+reactors, chevrons are reactions, clock-faced circles are periodic timers,
+`L` triangles are programmable logical timers, and a slashed connection marks
+a logical delay. These diagrams show declared structure; lag, slack, and the
+order in which events actually execute remain observations from the output.
+
 1. **Logical time.** In examples 02 and 03, which printed events carry
    *logical* timestamps, and how can you tell they are logical rather than
    wall-clock measurements?
@@ -75,6 +82,16 @@ answer **four short questions** (2-3 sentences each unless stated):
    Phase B (the live coach swaps one of them for a `PhysicalEvent` in
    `src/agentic_driving_coach/reactors/coach.py`)?
 
+   Compare the two structures before answering Question 4:
+
+   | Phase A: after-the-fact check | Phase B: event race |
+   |---|---|
+   | [![Phase A topology](diagrams/05a_retroactive_fallback_blocking.png)](diagrams/05a_retroactive_fallback_blocking.png) | [![Phase B topology](diagrams/05b_retroactive_fallback_race.png)](diagrams/05b_retroactive_fallback_race.png) |
+
+   Trace what triggers `infer`, what it schedules, and which reactions can run
+   later. Use those visible paths to decide which structure represents a
+   fallback that the runtime can schedule independently of model completion.
+
 ---
 
 ## Part 2 - Deterministic baseline (1 pt)
@@ -93,6 +110,13 @@ coach run --scenario stop-sign --driver beginner \
 ```
 
 Report (short answers / one table):
+
+The full-system topology below includes the Recorder and its observation taps.
+Use it together with `src/agentic_driving_coach/scenario.py` and the reactor
+implementations when answering the topology and delay questions. Click the
+image for the full-size version.
+
+[![Complete Agentic Driving Coach reactor topology](diagrams/agentic_driving_coach.png)](diagrams/agentic_driving_coach.png)
 
 1. **Topology.** List the five top-level reactors in the running system
    (the hierarchical Coach counts as one; name its two children too) and
