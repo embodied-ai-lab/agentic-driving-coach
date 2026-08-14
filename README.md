@@ -1,4 +1,4 @@
-# Intelligent and Safe CPS (ISCPS) Project Lab: Agentic Driving Coach
+# Embodied AI Lab: Agentic Driving Coach
 
 > This template repository is designed as a project lab for the combined course of
 > [CSE 494](https://catalog.apps.asu.edu/catalog/classes/classlist?keywords=85268&searchType=all&term=2267#detailsOpen=85268-104231)

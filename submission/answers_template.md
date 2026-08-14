@@ -1,4 +1,4 @@
-# ISCPS Project Lab - Agentic Driving Coach
+# Embodied AI Lab: Agentic Driving Coach
 
 ## Submission answers
 

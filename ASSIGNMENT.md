@@ -1,4 +1,4 @@
-# ISCPS Project Lab: Agentic Driving Coach
+# Embodied AI Lab: Agentic Driving Coach
 
 CSE 494/598 · 4 points (common) + 1 point (CSE 598 extension) ·
 estimated 4-6 hours after setup
