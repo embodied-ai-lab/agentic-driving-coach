@@ -41,7 +41,9 @@ symbols in the first diagram.
 
 Source: [`01_hello_reactor.py`](01_hello_reactor.py)
 
-[![Topology of the hello reactor](../diagrams/01_hello_reactor.png)](../diagrams/01_hello_reactor.png)
+<a href="../diagrams/01_hello_reactor.png">
+  <img src="../diagrams/01_hello_reactor.png" alt="Topology of the hello reactor" width="50%">
+</a>
 
 The environment creates one `Greeter` reactor. Its `on_startup` reaction is
 triggered once when execution begins, and `on_shutdown` is triggered once just
@@ -54,7 +56,9 @@ bound, not a request to keep an idle program alive.
 
 Source: [`02_timer_and_ports.py`](02_timer_and_ports.py)
 
-[![Topology of the timer and ports example](../diagrams/02_timer_and_ports.png)](../diagrams/02_timer_and_ports.png)
+<a href="../diagrams/02_timer_and_ports.png">
+  <img src="../diagrams/02_timer_and_ports.png" alt="Topology of the timer and ports example" width="80%">
+</a>
 
 The `Sensor` reactor's 100 ms periodic timer triggers `measure`. That reaction
 updates a reading and sets the typed `sample` output port. The connection
@@ -67,7 +71,9 @@ samples at logical times 0, 100, 200, 300, and 400 ms.
 
 Source: [`03_logical_delay.py`](03_logical_delay.py)
 
-[![Topology of the logical delay example](../diagrams/03_logical_delay.png)](../diagrams/03_logical_delay.png)
+<a href="../diagrams/03_logical_delay.png">
+  <img src="../diagrams/03_logical_delay.png" alt="Topology of the logical delay example" width="80%">
+</a>
 
 The `Commander` timer triggers `send` every 250 ms. The output-to-input
 connection is marked with a 500 ms logical delay, matching the `delay=`
@@ -80,7 +86,9 @@ its input port.
 
 Source: [`04_deadline_lag.py`](04_deadline_lag.py)
 
-[![Topology of the deadline, lag, and slack example](../diagrams/04_deadline_lag.png)](../diagrams/04_deadline_lag.png)
+<a href="../diagrams/04_deadline_lag.png">
+  <img src="../diagrams/04_deadline_lag.png" alt="Topology of the logical delay example" width="50%">
+</a>
 
 The two reactors are structurally independent. `FastMonitor.report` runs from
 a 100 ms timer and reports how far wall-clock execution is behind the current
