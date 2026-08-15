@@ -383,7 +383,7 @@ def _cmd_doctor(args: argparse.Namespace) -> int:
     if (3, 10) <= (v.major, v.minor) < (3, 14):
         ok("python", f"{v.major}.{v.minor}.{v.micro}")
     else:
-        bad("python", f"{v.major}.{v.minor} unsupported; need 3.10-3.13 (xronos wheels)")
+        bad("python", f"{v.major}.{v.minor} unsupported; need 3.10-3.13 (lab-supported range)")
 
     try:
         from importlib.metadata import version
@@ -391,10 +391,10 @@ def _cmd_doctor(args: argparse.Namespace) -> int:
         import xronos  # noqa: F401
 
         xronos_version = version("xronos")
-        if xronos_version == "0.12.0":
+        if xronos_version == "0.13.0":
             ok("xronos", xronos_version)
         else:
-            bad("xronos", f"found {xronos_version}, lab is pinned to 0.12.0", fatal=False)
+            bad("xronos", f"found {xronos_version}, lab is pinned to 0.13.0", fatal=False)
     except ImportError:
         bad("xronos", "not installed; run: pip install -e .")
 

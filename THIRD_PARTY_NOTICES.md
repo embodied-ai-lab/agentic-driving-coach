@@ -51,11 +51,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 - Adapted material: enum naming (`Accelerate`/`Brake` action values,
   `PlannerMode`), the modal-reactor-to-enum translation strategy, and the
   `data/` file layout idea. No code from `adc-xronos` is imported at runtime;
-  all reactors here were rewritten against the Xronos 0.12 API.
+  all reactors here have been validated against Xronos 0.13.
 
 ## 3. Xronos Python SDK
 
-- https://docs.xronos.com - proprietary SDK by Xronos Inc., installed from
+- https://docs.xronos.com - BSD 3-Clause SDK by Xronos Inc., installed from
   PyPI (`pip install xronos`). Not redistributed in this repository.
 
 ## 4. Paper

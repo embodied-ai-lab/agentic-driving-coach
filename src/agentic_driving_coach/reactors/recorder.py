@@ -3,7 +3,7 @@
 One reaction with many triggers fires once per logical tag at which anything
 observable happened, and appends one EventRow to the RunRecorder. The
 reaction is declared with a deadline so every row carries a real
-``ctx.lag`` / ``ctx.slack`` measurement from the Xronos 0.12 timing API.
+``ctx.lag`` / ``ctx.slack`` measurement from the Xronos 0.13 timing API.
 In ``--fast`` runs, wall-clock quantities are not meaningful.
 
 The recorder also ends the run: when the driver trace is exhausted it

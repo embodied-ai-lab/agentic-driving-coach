@@ -1,6 +1,6 @@
 # Apptainer definition for Embodied AI Lab - Agentic Driving Coach.
 #
-# Ubuntu 22.04 provides the manylinux_2_34 userspace the Xronos 0.12 wheels
+# Ubuntu 22.04 provides the manylinux_2_34 userspace the Xronos 0.13 wheels
 # need (Sol's Rocky Linux 8 host glibc is too old). The image contains the
 # project's Python runtime only:
 #   - no model weights (students pull Ollama models into scratch),
@@ -29,7 +29,7 @@ From: ubuntu:22.04
 
     # Pinned runtime dependencies, kept in sync with pyproject.toml.
     /opt/agentic-driving-coach-venv/bin/pip install --no-cache-dir \
-        "xronos==0.12.0" \
+        "xronos==0.13.0" \
         "matplotlib>=3.8,<4" \
         "ollama>=0.4,<1" \
         "tomli>=2.0"
