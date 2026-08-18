@@ -4,7 +4,7 @@ CSE 494/598 · 4 points (common) + 1 point (CSE 598 extension) ·
 estimated 4-6 hours after setup
 
 Record every answer in `submission/answers.md` (copy
-`submission/answers_template.md`). Keep answers short - numbers, one-liners,
+[`submission/answers_template.md`](submission/answers_template.md)). Keep answers short - numbers, one-liners,
 and small tables beat essays.
 
 This project examines how logical time, wall-clock inference latency, response
@@ -236,12 +236,12 @@ inference latency and is never counted in your measurements; raise
 `--warmup-timeout-s` if it exceeds its bound.
 
 1. The benchmark writes `comparison.csv`, `comparison.json`, `comparison.png`,
-and one directory per run. Fill in the Part 3 table of the answers template -
+and one directory per run. Fill in the first two rows of the Part 3 table of the answers template -
 per model: **median and p95 inference latency, deadline-miss rate, malformed
 count, unsafe-false-negative count, stopping outcome** (`stopped` +
 `velocity_at_stop_line_mps`).
 
-2. Then, a 3-5 sentence conclusion that must (a) name the metric(s) behind your
+2. Then, write a 3-5 sentence conclusion that must (a) name the metric(s) behind your
 claim and (b) state the latency-vs-quality tradeoff you observed. "Model X is
 better" without a metric and a tradeoff earns no credit. If a model never
 misses the deadline on your platform, say so and discuss what you *would*
@@ -265,7 +265,7 @@ coach run --scenario stop-sign --driver beginner \
     --fast --output results/replay-1b-300        # and likewise for ...-3b...
 ```
 
-3. Add the two replay rows to your Part 3 table and mark them as replays. They
+3. Fill in the last two rows of your Part 3 table and mark them as replays. They
 are deterministic, so one run each suffices, and reproduce the recorded
 misses, fallbacks, and late discards exactly. Compare them with your live
 rows: what does a deadline below the platform's latency floor do to coaching,
