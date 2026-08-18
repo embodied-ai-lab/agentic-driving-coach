@@ -7,7 +7,7 @@
 # instead.
 #SBATCH --account=class_cse494598fall2026
 #SBATCH --partition=htc
-#SBATCH --qos=public
+#SBATCH --qos=class
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=24G                      # Sol requires >= 24000 MB for GPU jobs
