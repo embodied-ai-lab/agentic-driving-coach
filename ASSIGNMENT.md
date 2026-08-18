@@ -13,7 +13,7 @@ sign.
 
 For more context, please feel free to refer to the
 [demo video](https://youtu.be/ucXgmFU9k_4?si=-bnngLY0c4ku8Kc_) and 
-[technical paper](https://arxiv.org/pdf/2604.11705) of the agentic driving coach.
+[technical paper](https://doi.org/10.1109/FMSys72110.2026.00013) of the agentic driving coach.
 
 ## Learning objectives
 
