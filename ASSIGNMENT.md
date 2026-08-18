@@ -193,7 +193,7 @@ ollama pull llama3.2:1b
 ollama pull llama3.2:3b
 ```
 
-Then run the whole benchmark as **one GPU batch job** (recommended - the
+Then, run the whole benchmark as **one GPU batch job** (recommended - the
 script starts the server, pre-loads both models, runs the benchmark at the
 course-validated `DEADLINE_MS=1700`, and checks its own results):
 
@@ -235,13 +235,13 @@ Every live run begins with an automatic model **warm-up** (`warming up
 inference latency and is never counted in your measurements; raise
 `--warmup-timeout-s` if it exceeds its bound.
 
-The benchmark writes `comparison.csv`, `comparison.json`, `comparison.png`,
+1. The benchmark writes `comparison.csv`, `comparison.json`, `comparison.png`,
 and one directory per run. Fill in the Part 3 table of the answers template -
 per model: **median and p95 inference latency, deadline-miss rate, malformed
 count, unsafe-false-negative count, stopping outcome** (`stopped` +
 `velocity_at_stop_line_mps`).
 
-Then a 3-5 sentence conclusion that must (a) name the metric(s) behind your
+2. Then, a 3-5 sentence conclusion that must (a) name the metric(s) behind your
 claim and (b) state the latency-vs-quality tradeoff you observed. "Model X is
 better" without a metric and a tradeoff earns no credit. If a model never
 misses the deadline on your platform, say so and discuss what you *would*
@@ -265,7 +265,7 @@ coach run --scenario stop-sign --driver beginner \
     --fast --output results/replay-1b-300        # and likewise for ...-3b...
 ```
 
-Add the two replay rows to your Part 3 table and mark them as replays. They
+3. Add the two replay rows to your Part 3 table and mark them as replays. They
 are deterministic, so one run each suffices, and reproduce the recorded
 misses, fallbacks, and late discards exactly. Compare them with your live
 rows: what does a deadline below the platform's latency floor do to coaching,
