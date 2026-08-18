@@ -65,7 +65,7 @@ unchanged):**
 
 ## 3. Model comparison (1 pt)
 
-Command used (paste exactly):
+**3.1 & 3.3 Command used (paste exactly):**
 
 | model | reps | median lat. (ms) | p95 lat. (ms) | miss rate | malformed | unsafe FN | stopped | v@line (m/s) |
 |---|---|---|---|---|---|---|---|---|
@@ -76,7 +76,7 @@ Command used (paste exactly):
 
 Figure: `results/model-comparison/comparison.png`
 
-**Conclusion (3-5 sentences; must name the metric(s) and the
+**3.2 Conclusion (3-5 sentences; must name the metric(s) and the
 latency-vs-quality tradeoff):**
 
 ## 4. Behavior / scenario experiment (1 pt)
