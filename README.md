@@ -60,6 +60,10 @@ git clone git@github.com:<OWNER>/<PRIVATE_REPOSITORY>.git
 cd <PRIVATE_REPOSITORY>
 ```
 
+> Troubleshooting: Although this is not a common issue, if the environment
+> variable USER is not set up by any chance due to your terminal environments,
+> you can set it up manually by running `export USER=$(whoami)`.
+
 Request a CPU allocation, load the required modules, and build the image:
 
 ```bash
