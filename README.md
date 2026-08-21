@@ -14,9 +14,9 @@ wall-clock inference latency, deadline misses, deterministic fallback, and
 physical stopping outcomes. Arizona State University (ASU)'s
 [Sol Supercomputer](https://docs.rc.asu.edu/about) is the primary platform.
 
-This project lab is inspired by *Agentic Driving Coach*
-([arXiv:2604.11705](https://arxiv.org/abs/2604.11705)) by Deeksha Prahlad, Daniel Fan, and Hokeun Kim
-(to appear in the proceedings of [FMSys'26](https://fmsys-org.github.io/2026/program.html#main))
+This project lab is inspired by 
+[*Agentic Driving Coach*](https://doi.org/10.1109/FMSys72110.2026.00013) by Deeksha Prahlad, Daniel Fan, and Hokeun Kim
+(published in the proceedings of [FMSys'26](https://fmsys-org.github.io/2026/program.html#main))
 and this lab uses
 [Xronos Python SDK](https://docs.xronos.com/python_sdk/getting_started.html) 0.13.1 for its reactor implementation.
 
@@ -59,6 +59,10 @@ cd /scratch/$USER
 git clone git@github.com:<OWNER>/<PRIVATE_REPOSITORY>.git
 cd <PRIVATE_REPOSITORY>
 ```
+
+> Troubleshooting: Although this is not a common issue, if the environment
+> variable USER is not set up by any chance due to your terminal environments,
+> you can set it up manually by running `export USER=$(whoami)`.
 
 Request a CPU allocation, load the required modules, and build the image:
 
@@ -230,8 +234,8 @@ planning reactors. It can use a rule policy, a replay trace, or live Ollama
 responses, and it applies the deterministic fallback when a response is late,
 unsafe, or malformed. Recorder writes the result files used in the assignment.
 
-The system follows *Agentic Driving Coach*
-([arXiv:2604.11705](https://arxiv.org/abs/2604.11705)) by Deeksha Prahlad, Daniel Fan, and Hokeun Kim.
+The system follows the recent FMSys'26 publication,
+[*Agentic Driving Coach*](https://doi.org/10.1109/FMSys72110.2026.00013) by Deeksha Prahlad, Daniel Fan, and Hokeun Kim.
 The [original implementation](https://github.com/asu-kim/agentic-driving-coach)
 using [Lingua Franca](https://www.lf-lang.org/)
 is reimplemented here with the
