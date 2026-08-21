@@ -18,7 +18,7 @@ This project lab is inspired by *Agentic Driving Coach*
 ([arXiv:2604.11705](https://arxiv.org/abs/2604.11705)) by Deeksha Prahlad, Daniel Fan, and Hokeun Kim
 (to appear in the proceedings of [FMSys'26](https://fmsys-org.github.io/2026/program.html#main))
 and this lab uses
-[Xronos Python SDK](https://docs.xronos.com/python_sdk/getting_started.html) 0.13.0 for its reactor implementation.
+[Xronos Python SDK](https://docs.xronos.com/python_sdk/getting_started.html) 0.13.1 for its reactor implementation.
 
 ## Create your private repository
 
@@ -235,7 +235,7 @@ The system follows *Agentic Driving Coach*
 The [original implementation](https://github.com/asu-kim/agentic-driving-coach)
 using [Lingua Franca](https://www.lf-lang.org/)
 is reimplemented here with the
-[Xronos Python SDK](https://docs.xronos.com/python_sdk/getting_started.html) 0.13.0.
+[Xronos Python SDK](https://docs.xronos.com/python_sdk/getting_started.html) 0.13.1.
 
 ### Reactor topology
 

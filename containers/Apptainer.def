@@ -29,7 +29,7 @@ From: ubuntu:22.04
 
     # Pinned runtime dependencies, kept in sync with pyproject.toml.
     /opt/agentic-driving-coach-venv/bin/pip install --no-cache-dir \
-        "xronos==0.13.0" \
+        "xronos==0.13.1" \
         "matplotlib>=3.8,<4" \
         "ollama>=0.4,<1" \
         "tomli>=2.0"

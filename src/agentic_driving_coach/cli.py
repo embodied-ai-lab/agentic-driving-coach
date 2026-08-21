@@ -391,10 +391,10 @@ def _cmd_doctor(args: argparse.Namespace) -> int:
         import xronos  # noqa: F401
 
         xronos_version = version("xronos")
-        if xronos_version == "0.13.0":
+        if xronos_version == "0.13.1":
             ok("xronos", xronos_version)
         else:
-            bad("xronos", f"found {xronos_version}, lab is pinned to 0.13.0", fatal=False)
+            bad("xronos", f"found {xronos_version}, lab is pinned to 0.13.1", fatal=False)
     except ImportError:
         bad("xronos", "not installed; run: pip install -e .")
 
